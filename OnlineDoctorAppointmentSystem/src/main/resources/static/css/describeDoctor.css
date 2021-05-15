@@ -1,0 +1,65 @@
+@charset "ISO-8859-1";
+
+body {
+	font-family: sans-serif;
+}
+	
+.name {
+	font-size: 16px;
+	margin-bottom: 5px;
+}
+	
+h1 {
+	display: inline;
+	margin-left: 10px;
+	font-size: 40px;
+	border-bottom: 6px solid #ff5064;
+}
+	
+.value {
+	margin-top: 20px;
+	margin-left: 10px;
+}
+	
+form select {
+	border: none;
+	border-bottom: 2px solid black;	
+}
+
+form input[type="submit"] {
+	padding: 5px 20px;
+	font-size: 15px;
+	margin-top: 8px;
+	margin-right: 8px;
+	background: none;
+	border: 2px solid #ff5064;
+	cursor: pointer;
+}
+
+form input[type="submit"]:hover {
+	background: #ff5064;
+	color: white;
+	border: none;
+	padding: 7px 22px;
+}
+
+.logout {
+	float: right;
+}
+
+.logout input[type=submit] {
+	padding: 5px 20px;
+	font-size: 15px;
+	margin-top: 8px;
+	margin-right: 8px;
+	background: none;
+	border: 2px solid #ff5064;
+	cursor: pointer;
+}
+
+.logout input[type=submit]:hover {
+	background: #ff5064;
+	color: white;
+	border: none;
+	padding: 7px 22px;
+}

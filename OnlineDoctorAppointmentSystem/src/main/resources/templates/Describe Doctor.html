@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/describeDoctor.css}">
+</head>
+<body>
+	<h1>Describe Doctor</h1>
+	<div th:fragment="logout" class="logout"
+			sec:authorize="isAuthenticated()">
+		<form action="#" th:action="@{/logout}" method="post">
+			<input type="submit" value="Logout" />
+		</form>
+	</div>
+	<div class="value">
+		<div class="name">
+		Hospital Name: <span th:text="${doctor.hospitalName}"></span>
+		</div>
+		<div class="name">
+		Specialty: <span th:text="${doctor.specialty}"></span>
+		</div>
+		<div class="name">
+		Address: <span th:text="${doctor.address}"></span>
+		</div>
+		<div class="name">
+		Fee: <span th:text="${doctor.fee}"></span>
+		</div>
+		<div class="name">
+		Email ID: <span th:text="${doctor.emailId}"></span>
+		</div>
+		<div class="name">
+		Phone Number: <span th:text="${doctor.phoneNumber}"></span>
+		</div>
+		<div class="name">
+		Appointment Time: <span th:text=${appointmentTime}></span>
+		</div>
+		<div class="name">
+		Status: <span th:text="${status}"></span>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<meta charset="ISO-8859-1">
+<title>Home Page</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" th:href="@{/css/homePage.css}">
+</head>
+<body>
+	<div th:fragment="logout" class="logout"
+			sec:authorize="isAuthenticated()">
+			<form action="#" th:action="@{/logout}" method="post">
+				<input type="submit" value="Logout" />
+			</form>
+		</div>
+		<button onclick="location.href='http://localhost:8080/patienttAppointments'">Appoinments</button>
+	<div class="container">
+		<div class="formBx">
+		<form th:method="post" th:action="@{/searchDoctors}" th:object="${patientAppointment}">
+			<h2>Home Page</h2>
+			<label for="specialty">Choose a type of doctor:</label><br>
+			<select id="specialty" th:field="*{specialty}" size="1">
+				<option value="Anatomical Pathology">Anatomical Pathology</option>
+				<option value="Anesthesiology">Anesthesiology</option>
+				<option value="Cardiology">Cardiology</option>
+				<option value="Cardiovascular/Thoracic Surgery">Cardiovascular/Thoracic Surgery</option>
+				<option value="Clinical Immunology/Allergy">Clinical Immunology/Allergy</option>
+				<option value="Critical Care Medicine">Critical Care Medicine</option>
+				<option value="Dermatology">Dermatology</option>
+				<option value="Diagnostic Radiology">Diagnostic Radiology</option>
+				<option value="Emergency Medicine">Emergency Medicine</option>
+				<option value="Endocrinology and Metabolism">Endocrinology and Metabolism</option>
+				<option value="Family Medicine">Family Medicine</option>
+				<option value="Gastroenterology">Gastroenterology</option>
+				<option value="General Internal Medicine">General Internal Medicine</option>
+				<option value="General Surgery">General Surgery</option>
+				<option value="General/Clinical Pathology">General/Clinical Pathology</option>
+				<option value="Geriatric Medicine">Geriatric Medicine</option>
+				<option value="Hematology">Hematology</option>
+				<option value="Medical Biochemistry">Medical Biochemistry</option>
+				<option value="Medical Genetics">Medical Genetics</option>
+				<option value="Medical Microbiology and Infectious Diseases">Medical Microbiology and Infectious Diseases</option>
+				<option value="Medical Oncology">Medical Oncology</option>
+				<option value="Nephrology">Nephrology</option>
+				<option value="Neurology">Neurology</option>
+				<option value="Neurosurgery">Neurosurgery</option>
+				<option value="Nuclear Medicine">Nuclear Medicine</option>
+				<option value="Obstetrics/Gynecology">Obstetrics/Gynecology</option>
+				<option value="Occupational Medicine">Occupational Medicine</option>
+				<option value="Ophthalmology">Ophthalmology</option>
+				<option value="Orthopedic Surgery">Orthopedic Surgery</option>
+				<option value="Otolaryngology">Otolaryngology</option>
+				<option value="Pediatrics">Pediatrics</option>
+				<option value="Physical Medicine and Rehabilitation (PM & R)">Physical Medicine and Rehabilitation (PM &amp; R)</option>
+				<option value="Plastic Surgery">Plastic Surgery</option>
+				<option value="Psychiatry">Psychiatry</option>
+				<option value="Public Health and Preventive Medicine (PhPm)">Public Health and Preventive Medicine (PhPm)</option>
+				<option value="Radiation Oncology">Radiation Oncology</option>
+				<option value="Respirology">Respirology</option>
+				<option value="Rheumatology">Rheumatology</option>
+				<option value="Urology">Urology</option>
+			</select><br>
+			<h3>Enter your address:</h3><br>
+			<div class="inputBox">
+				<input type="text" id="addressLine" th:field="*{patientAddressLine}" required="required">
+				<span>Address Line</span>
+			</div>
+			<div class="inputBox">
+				<input type="text" id="city" th:field="*{patientCity}" required="required">
+				<span>City</span>
+			</div>
+			<div class="inputBox">
+				<input type="text" id="province" th:field="*{patientProvince}" required="required">
+				<span>Province</span>
+			</div>
+			<div class="inputBox">
+				<input type="text" id="country" th:field="*{patientCountry}" required="required">
+				<span>Country</span>
+			</div>
+			<div class="inputBox">
+				<input type="text" id="zipCode" th:field="*{patientZipCode}" required="required">
+				<span>Zip Code</span>
+			</div>
+			<div class="inputBox">
+				<input type="submit" id="submit" value="Search">
+			</div>
+		</form>
+		</div>
+	</div>
+	<script>
+		var x = document.getElementById("submit");
+		x.onclick = function() {
+		document.getElementById("submit").value = "Searching...";
+	}
+	</script>
+</body>
+</html>

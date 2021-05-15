@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Register New Doctor</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/registerDoctor.css}">
+<script th:src="@{/javascript/registerDoctor.js}"></script>
+</head>
+<body>
+	<div id="container">
+		<form th:method="post" th:action="@{/registerDoctor}" th:object="${doctor}">
+			<div id="Form1">
+			<h3>REGISTER NEW DOCTOR</h3>
+			<div class="inputBox">
+				<input type="text" id="username" th:field="*{username}" required="required">
+				<span>Username</span>
+			</div>
+			<div class="inputBox">
+				<input type="password" id="password" th:field="*{password}" required="required">
+				<span>Password</span>
+			</div>
+			<div class="inputBox">
+				<input type="text" id="hospitalName" th:field="*{hospitalName}" required="required">
+				<span>Hospital Name</span>
+			</div>
+			<span id="area">Area of specialty: </span>
+			<select id="specialty"  th:field="*{specialty}" size="1">
+				<option value="Anatomical Pathology">Anatomical Pathology</option>
+				<option value="Anesthesiology">Anesthesiology</option>
+				<option value="Cardiology">Cardiology</option>
+				<option value="Cardiovascular/Thoracic Surgery">Cardiovascular/Thoracic Surgery</option>
+				<option value="Clinical Immunology/Allergy">Clinical Immunology/Allergy</option>
+				<option value="Critical Care Medicine">Critical Care Medicine</option>
+				<option value="Dermatology">Dermatology</option>
+				<option value="Diagnostic Radiology">Diagnostic Radiology</option>
+				<option value="Emergency Medicine">Emergency Medicine</option>
+				<option value="Endocrinology and Metabolism">Endocrinology and Metabolism</option>
+				<option value="Family Medicine">Family Medicine</option>
+				<option value="Gastroenterology">Gastroenterology</option>
+				<option value="General Internal Medicine">General Internal Medicine</option>
+				<option value="General Surgery">General Surgery</option>
+				<option value="General/Clinical Pathology">General/Clinical Pathology</option>
+				<option value="Geriatric Medicine">Geriatric Medicine</option>
+				<option value="Hematology">Hematology</option>
+				<option value="Medical Biochemistry">Medical Biochemistry</option>
+				<option value="Medical Genetics">Medical Genetics</option>
+				<option value="Medical Microbiology and Infectious Diseases">Medical Microbiology and Infectious Diseases</option>
+				<option value="Medical Oncology">Medical Oncology</option>
+				<option value="Nephrology">Nephrology</option>
+				<option value="Neurology">Neurology</option>
+				<option value="Neurosurgery">Neurosurgery</option>
+				<option value="Nuclear Medicine">Nuclear Medicine</option>
+				<option value="Obstetrics/Gynecology">Obstetrics/Gynecology</option>
+				<option value="Occupational Medicine">Occupational Medicine</option>
+				<option value="Ophthalmology">Ophthalmology</option>
+				<option value="Orthopedic Surgery">Orthopedic Surgery</option>
+				<option value="Otolaryngology">Otolaryngology</option>
+				<option value="Pediatrics">Pediatrics</option>
+				<option value="Physical Medicine and Rehabilitation (PM & R)">Physical Medicine and Rehabilitation (PM &amp; R)</option>
+				<option value="Plastic Surgery">Plastic Surgery</option>
+				<option value="Psychiatry">Psychiatry</option>
+				<option value="Public Health and Preventive Medicine (PhPm)">Public Health and Preventive Medicine (PhPm)</option>
+				<option value="Radiation Oncology">Radiation Oncology</option>
+				<option value="Respirology">Respirology</option>
+				<option value="Rheumatology">Rheumatology</option>
+				<option value="Urology">Urology</option>
+			</select><br>
+			<div class="btn-box">
+				<button type="button" id="Next1">NEXT</button>
+			</div>
+		</div>
+		
+		<div id="Form2">
+			<h3>TIMINGS</h3>
+			<label for="monday">Monday</label>
+			<input type="checkbox" id="monday" th:value="MONDAY" th:field="*{monday}" onclick="validateMonday()">&nbsp;
+			<label for="mondayOpening">Opening Time:</label>
+			<input type="time" id="mondayOpening" th:field="*{mondayOpening}" disabled>&nbsp;
+			<label for="mondayClosing">Closing Time:</label> 
+			<input type="time" id="mondayClosing" th:field="*{mondayClosing}" disabled><br>
+			
+			<label for="tuesday">Tuesday</label>
+			<input type="checkbox" id="tuesday" th:value="TUESDAY" th:field="*{tuesday}" onclick="validateTuesday()">&nbsp;
+			<label for="tuesdayOpening">Opening Time:</label>
+			<input type="time" id="tuesdayOpening" th:field="*{tuesdayOpening}" disabled>&nbsp;
+			<label for="tuesdayClosing">Closing Time:</label> 
+			<input type="time" id="tuesdayClosing" th:field="*{tuesdayClosing}" disabled><br>
+			
+			<label for="wednesday">Wednesday</label>
+			<input type="checkbox" id="wednesday" th:value="WEDNESDAY" th:field="*{wednesday}" onclick="validateWednesday()">&nbsp;
+			<label for="wednesdayOpening">Opening Time:</label>
+			<input type="time" id="wednesdayOpening" th:field="*{wednesdayOpening}" disabled>&nbsp;
+			<label for="wednesdayClosing">Closing Time:</label> 
+			<input type="time" id="wednesdayClosing" th:field="*{wednesdayClosing}" disabled><br>
+			
+			<label for="thursday">Thursday</label>
+			<input type="checkbox" id="thursday" th:value="THURSDAY" th:field="*{thursday}" onclick="validateThursday()">&nbsp;
+			<label for="thursdayOpening">Opening Time:</label>
+			<input type="time" id="thursdayOpening" th:field="*{thursdayOpening}" disabled>&nbsp;
+			<label for="thursdayClosing">Closing Time:</label> 
+			<input type="time" id="thursdayClosing" th:field="*{thursdayClosing}" disabled><br>
+			
+			<label for="friday">Friday</label>
+			<input type="checkbox" id="friday" th:value="FRIDAY" th:field="*{friday}" onclick="validateFriday()">&nbsp;
+			<label for="fridayOpening">Opening Time:</label>
+			<input type="time" id="fridayOpening" th:field="*{fridayOpening}" disabled>&nbsp;
+			<label for="fridayClosing">Closing Time:</label> 
+			<input type="time" id="fridayClosing" th:field="*{fridayClosing}" disabled><br>
+			
+			<label for="saturday">Saturday</label>
+			<input type="checkbox" id="saturday" th:value="SATURDAY" th:field="*{saturday}" onclick="validateSaturday()">&nbsp;
+			<label for="saturdayOpening">Opening Time:</label>
+			<input type="time" id="saturdayOpening" th:field="*{saturdayOpening}" disabled>&nbsp;
+			<label for="saturdayClosing">Closing Time:</label> 
+			<input type="time" id="saturdayClosing" th:field="*{saturdayClosing}" disabled><br>
+			
+			<label for="sunday">Sunday</label>
+			<input type="checkbox" id="sunday" th:value="SUNDAY" th:field="*{sunday}" onclick="validateSunday()">&nbsp;
+			<label for="sundayOpening">Opening Time:</label>
+			<input type="time" id="sundayOpening" th:field="*{sundayOpening}" disabled>&nbsp;
+			<label for="sundayClosing">Closing Time:</label> 
+			<input type="time" id="sundayClosing" th:field="*{sundayClosing}" disabled><br>
+			
+			<div class="btn-box">
+				<button type="button" id="Back1">BACK</button>
+				<button type="button" id="Next2">NEXT</button>
+			</div>
+		</div>
+		
+		<div id="Form3">
+			<h3>OTHER DETAILS</h3>
+			<div class="inputBox">
+				<input type="text" id="address" th:field="*{address}" required="required">
+				<span>Address</span>
+			</div>
+			<div class="inputBox">
+				<input type="number" step="0.01" id="fee" name="fee" required="required">
+				<span>Fee</span>
+			</div>
+			<div class="inputBox">
+				<input type="email" id="email" th:field="*{emailId}" required="required">
+				<span>Email</span>
+			</div>
+			<div class="inputBox">
+				<input type="tel" id="phoneNumber" pattern="[0-9]{10}" name="phoneNumber" required="required">
+				<span>PhoneNumber</span>
+			</div>
+			
+			<div class="btn-box">
+				<button type="button" id="Back2">BACK</button>
+				<button type="submit">SUBMIT</button>
+			</div>
+		</div>
+		</form>
+		
+		<div id="step" class="step-row">
+			<div id="progress"></div>
+			<div id="step-col1" class="step-col"><small>Step 1</small></div>
+			<div id="step-col2" class="step-col"><small>Step 2</small></div>
+			<div id="step-col3" class="step-col"><small>Step 3</small></div>			
+		</div>
+		
+	</div>
+	<script>
+		var Container = document.getElementById("container");
+	
+		var Form1 = document.getElementById("Form1");
+		var Form2 = document.getElementById("Form2");
+		var Form3 = document.getElementById("Form3");
+	
+		var Next1 = document.getElementById("Next1");
+		var Next2 = document.getElementById("Next2");
+		var Back1 = document.getElementById("Back1");
+		var Back2 = document.getElementById("Back2");
+		
+		var progress = document.getElementById("progress");
+		
+		var Step1 = document.getElementById("step-col1");
+		var Step2 = document.getElementById("step-col2");
+		var Step3 = document.getElementById("step-col3");
+		var Step4 = document.getElementById("step");
+
+	
+		Next1.onclick = function() {
+			Form1.style.left = "-550px";
+			Form2.style.left = "40px";
+			progress.style.width = "400px";
+			Container.style.width = "600px";
+			Container.style.height = "600px";
+			Step1.style.width = "200px";
+			Step2.style.width = "200px";
+			Step3.style.width = "200px";
+			Step4.style.width = "600px"
+		}
+		
+		Back1.onclick = function() {
+			Form1.style.left = "40px";
+			Form2.style.left = "550px";
+			progress.style.width = "120px";
+			Container.style.width = "360px";
+			Container.style.height = "550px";
+			Step1.style.width = "120px";
+			Step2.style.width = "120px";
+			Step3.style.width = "120px";
+			Step4.style.width = "360px"
+		}
+		
+		Next2.onclick = function() {
+			Form2.style.left = "-550px";
+			Form3.style.left = "40px";
+			progress.style.width = "360px";
+			progress.style.transition = "2s";
+			Container.style.width = "360px";
+			Container.style.height = "530px";
+			Step1.style.width = "120px";
+			Step2.style.width = "120px";
+			Step3.style.width = "120px";
+			Step4.style.width = "360px"
+		}
+		
+		Back2.onclick = function() {
+			Form2.style.left = "40px";
+			Form3.style.left = "650px";
+			progress.style.width = "400px";
+			Container.style.width = "600px";
+			Container.style.height = "600px";
+			Step1.style.width = "200px";
+			Step2.style.width = "200px";
+			Step3.style.width = "200px";
+			Step4.style.width = "600px"
+		}
+	</script>
+</body>
+</html>

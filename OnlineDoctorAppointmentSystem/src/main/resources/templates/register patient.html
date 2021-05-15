@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Register New Patient</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/registerPatient.css}">
+</head>
+<body>
+	<div class="container">
+		<div class="formBx">
+			<form th:method="post" th:action="@{/registerPatient}" th:object="${patient}">
+				<h2>Register New Patient</h2>
+				<div class="inputBox">
+					<input type="text" id="name" th:field="*{name}" required="required">
+					<span>Full Name</span>
+				</div>
+				<div class="inputBox">
+					<input type="text" id="username" th:field="*{username}" required="required">
+					<span>Username</span>
+				</div>
+				<div class="inputBox">
+					<input type="password" id="password" th:field="*{password}" required="required">
+					<span>Password</span>
+				</div>
+				<div class="inputBox">
+					<input type="email" id="email" th:field="*{emailId}" required="required">
+					<span>Email ID</span>
+				</div>
+				<div class="inputBox">
+					<input type="tel" id="phoneNumber"  pattern="[0-9]{10}" name="phoneNumber"  required="required">
+					<span>Phone Number</span>
+				</div>
+				<div class="inputBox">
+					<input type="submit" value="Register" required="required">
+				</div>
+			</form>
+		</div>
+		<div class="imgBx">
+			<img th:src="@{/images/doctor1.png}" />
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/describeDoctor.css}">
+</head>
+<body>
+		<h1>Describe Doctor</h1>
+		<div th:fragment="logout" class="logout"
+					sec:authorize="isAuthenticated()">
+			<form action="#" th:action="@{/logout}" method="post">
+				<input type="submit" value="Logout" />
+			</form>
+		</div>
+		<div class="value">
+			<div class="name">
+			Hospital Name: <span th:text="${doctor.hospitalName}"></span>
+			</div>
+			<div class="name">
+			Specialty: <span th:text="${doctor.specialty}"></span>
+			</div>
+			<div class="name">
+			Address: <span th:text="${doctor.address}"></span>
+			</div>
+			<div class="name">
+			Fee: <span th:text="${doctor.fee}"></span>
+			</div>
+			<div class="name">
+			Email ID: <span th:text="${doctor.emailId}"></span>
+			</div>
+			<div class="name">
+			Phone Number: <span th:text="${doctor.phoneNumber}"></span>
+			</div>
+			<form th:method="post" th:action="@{/requestAppointment}">
+				<label for="appointmentTime">Request Appointment:</label>
+				<select id="appointmentTime" name="appointmentTime">
+					<div th:each="t: ${doctor.timings}">
+						<option th:value="${t}" th:text="${t}"></option>
+					</div>
+				</select><br>
+				<input type="hidden" th:value="${doctor.doctorId}" name="doctorId">
+				<input type="hidden" th:value="${patientAddressLine}" name="patientAddressLine">
+				<input type="hidden" th:value="${patientCity}" name="patientCity">
+				<input type="hidden" th:value="${patientProvince}" name="patientProvince">
+				<input type="hidden" th:value="${patientCountry}" name="patientCountry">
+				<input type="hidden" th:value="${patientZipCode}" name="patientZipCode">
+				<input type="hidden" th:value="${specialty}" name="specialty">
+				<input type="submit" value="Request Appointment">
+			</form>
+		</div>
+</body>
+</html>

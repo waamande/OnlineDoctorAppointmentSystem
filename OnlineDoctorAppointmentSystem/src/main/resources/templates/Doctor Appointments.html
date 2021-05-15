@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" th:href="@{/css/DoctorAppointments.css}">
+</head>
+<body>
+	<h1>Doctor Appointments</h1>
+	<div class="search-container">
+		<form th:method="post" th:action="@{/searchPatient}">
+			<input type="text" placeholder="Search..." th:name="searchValue">
+			<button type="submit"><i class="fa fa-search"></i></button>&nbsp;
+			<label for="type">Select Type:</label>
+			<select id="type" name="type">
+				<option value="name">Patient Name</option>
+				<option value="emailId">Email ID</option>
+				<option value="phoneNumber">Phone Number</option>
+				<option value="appointmentTime">Appointment Time</option>
+			</select>
+		</form>
+	</div>
+	<div th:fragment="logout" class="logout"
+			sec:authorize="isAuthenticated()">
+		<form action="#" th:action="@{/logout}" method="post">
+			<input type="submit" value="Logout" />
+		</form>
+	</div>
+	<table class="results">
+		<tr>
+			<th>Patient Name</th>
+			<th>Email ID</th>
+			<th>Phone Number</th>
+			<th>Appointment Time</th>
+			<th>Reply</th>
+		</tr>
+		<tr th:each="p: ${patientAppointments}">
+			<td th:text="${p.name}"></td>
+			<td th:text="${p.emailId}"></td>
+			<td th:text="${p.phoneNumber}"></td>
+			<td th:text="${p.appointmentTime}"></td>
+			<td>
+				<div th:if="${p.request}">
+					<div th:text="${p.status}"></div>
+				</div>
+				<div th:unless="${p.request}">
+					<a th:href="@{/accept/{id}(id=${p.appointmentId})}">Accept</a>&nbsp;
+					<a th:href="@{/decline/{id}(id=${p.appointmentId})}" id="b">Decline</a>
+				</div>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

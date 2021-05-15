@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" th:href="@{/css/PatientAppointments.css}">
+
+</head>
+<body>
+	<h1>Student Appointments</h1>
+	<div class="search-container">
+		<form th:method="post" th:action="@{/searchDoctor}">
+			<input type="text" placeholder="Search..." th:name="searchValue">
+			<button type="submit"><i class="fa fa-search"></i></button>&nbsp;
+			<label for="type">Select Type:</label>
+			<select id="type" name="type">
+				<option value="specialty">Specialty</option>
+				<option value="appointmentTime">Appointment Time</option>
+				<option value="status">Status</option>
+			</select>
+		</form>
+	</div>
+	<div th:fragment="logout" class="logout"
+			sec:authorize="isAuthenticated()">
+		<form action="#" th:action="@{/logout}" method="post">
+			<input type="submit" value="Logout" />
+		</form>
+	</div>
+	<table class="results">
+		<tr>
+			<th>Doctor ID</th>
+			<th>Specialty</th>
+			<th>Appointment Time</th>
+			<th>Status</th>
+		</tr>
+		<tr th:each="s: ${studentAppointments}">
+			<td>
+				<form th:method="post" th:action="@{/describeDoctor}">
+					<input type="hidden" th:value="${s.doctorId}" name="doctorId">
+					<input type="hidden" th:value="${s.appointmentTime}" name="appointmentTime">
+					<input type="hidden" th:value="${s.status}" name="status">
+					<input type="submit" th:value="${s.doctorId}">
+				</form>
+			</td>
+			<td th:text="${s.specialty}"></td>
+			<td th:text="${s.appointmentTime}"></td>
+			<td th:text="${s.status}"></td>
+		</tr>
+	</table>
+</body>
+</html>

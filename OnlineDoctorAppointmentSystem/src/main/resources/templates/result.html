@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<meta charset="ISO-8859-1">
+<title>Search Results</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/result.css}">
+</head>
+<body>
+<h1>Search Results</h1>
+<div th:fragment="logout" class="logout"
+		sec:authorize="isAuthenticated()">
+	<form action="#" th:action="@{/logout}" method="post">
+		<input type="submit" value="Logout" />
+	</form>
+</div>
+	
+<table class="results">
+	<tr>
+		<th>Hospital Name</th>
+		<th>Fee</th>
+		<th>Address</th>
+	</tr>
+	<tr th:each="d: ${doctors}">
+		<td>
+			<form th:method="post" th:action="@{/describeDoctors}">
+				<input type="hidden" th:value="${d.timings}" name="timings">
+				<input type="hidden" th:value="${d.doctorId}" name="doctorId">
+				<input type="hidden" th:value="${patientAppointment.patientAddressLine}" name="patientAddressLine">
+				<input type="hidden" th:value="${patientAppointment.patientCity}" name="patientCity">
+				<input type="hidden" th:value="${patientAppointment.patientProvince}" name="patientProvince">
+				<input type="hidden" th:value="${patientAppointment.patientCountry}" name="patientCountry">
+				<input type="hidden" th:value="${patientAppointment.patientZipCode}" name="patientZipCode">
+				<input type="hidden" th:value="${patientAppointment.specialty}" name="specialty">
+				<input type="submit" th:value="${d.hospitalName}">
+			</form>
+		</td>
+		<td th:text="${d.fee}"></td>
+		<td th:text=${d.address}></td>
+	</tr>
+</table>
+</body>
+</html>
